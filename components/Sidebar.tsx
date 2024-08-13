@@ -1,6 +1,7 @@
 'use client'
 import { sidebarLinks } from '@/constants'
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import React from 'react'
@@ -17,7 +18,13 @@ const Sidebar = () => {
                             'bg-blue-1': isActive,
                 })}
                 >
-                { link.labels }
+                <Image
+                src={link.imgUrl}
+                alt={link.labels}
+                width={24}
+                height={24}
+                />
+                <p className='text-lg font-semibold max-lg:hidden'>{link.labels}</p>
                         </Link>
             )
                 })}

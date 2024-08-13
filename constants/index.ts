@@ -3,7 +3,7 @@ export const sidebarLinks=[
     {
        labels:'Home',
        route:'/',
-       imgUrl:'/icons/home.svg',
+       imgUrl:'/icons/Home.svg',
     },
     {
         labels:'Upcoming',
@@ -17,12 +17,12 @@ export const sidebarLinks=[
     },
     {
         labels:'Recordings',
-        route:'/recording',
-        imgUrl:'/icons/Videos.svg',
+        route:'/recordings',
+        imgUrl:'/icons/Video.svg',
     },
     {
         labels:'Personal room',
         route:'/personal-room',
-        imgUrl:'/icons/personal-add.svg',
+        imgUrl:'/icons/add-personal.svg',
     },
 ]
