@@ -4,9 +4,13 @@
 import { useState } from "react"
 import HomeCards from "./HomeCards"
 import { useRouter } from "next/navigation"
+import MeetingModal from "./MeetingModal"
 
 
 const MeetingTypeList = () => {
+    const createMeeting=()=>{
+
+    }
     const router = useRouter()
     const [meetingState, setMeetingState] = useState<'isSchedulingMeeting' | 'isInstantMeeting' | 'isJoiningMeeting' | undefined>()
     return (
@@ -38,6 +42,14 @@ const MeetingTypeList = () => {
                 description="via invitation link"
                 handleClick={() => { setMeetingState('isInstantMeeting') }}
                 className="bg-purple-1"
+            />
+            <MeetingModal
+            isOpen={meetingState==='isInstantMeeting'}
+            onClose={()=>setMeetingState(undefined)}
+            title='start an instant meeting'
+            className="text-center"
+            buttonText='start meeting'
+            handleClick={createMeeting}
             />
         </section>
     )
