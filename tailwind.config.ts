@@ -28,6 +28,12 @@ const config = {
         },
         sky:{
           1:'#C9DDFF'
+        },
+        orinage:{
+          1:'#FF742E'
+        },
+        purple:{
+          1:'#800080'
         }
       },
       backgroundImage:{
