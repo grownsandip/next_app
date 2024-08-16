@@ -3,7 +3,7 @@ import React from 'react'
 const Meeting = ({params}:{params:{id:string}}) => {
   return (
     <div>
-      Meeting:#{params.id}
+      Meeting Room:#{params.id}
     </div>
   )
 }
