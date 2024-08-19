@@ -1,13 +1,21 @@
 import { cn } from '@/lib/utils';
-import { CallControls, CallParticipantsList, CallStatsButton, PaginatedGridLayout, SpeakerLayout } from '@stream-io/video-react-sdk';
+import { CallControls, CallingState, CallParticipantsList, CallStatsButton, PaginatedGridLayout, SpeakerLayout, useCallStateHooks } from '@stream-io/video-react-sdk';
 import React, { useState } from 'react'
-import { DropdownMenu,DropdownMenuContent,DropdownMenuItem,DropdownMenuLabel,DropdownMenuSeparator,DropdownMenuTrigger } from './ui/dropdown-menu';
+import { DropdownMenu,DropdownMenuContent,DropdownMenuItem,DropdownMenuSeparator,DropdownMenuTrigger } from './ui/dropdown-menu';
 import { LayoutList, Users } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import EndCallButton from './EndCallButton';
+import Loader from './Loader';
 
  type callLayoutType='grid'|'speaker-left'|'speaker-right';
 const MeetingRoom = () => {
+    const searchParams=useSearchParams();
+    const isPersonalRoom=!!searchParams.get('personal')
     const [layout,setLayout]=useState<callLayoutType>();
-    const [showParticipants,setShowParticipants]=useState(true)
+    const [showParticipants,setShowParticipants]=useState(false)
+    const {useCallCallingState}=useCallStateHooks()
+    const callingState=useCallCallingState()
+    if(callingState!==CallingState.JOINED) return <Loader/>
 
     const CallLayout=()=>{
         switch(layout){
@@ -29,7 +37,7 @@ const MeetingRoom = () => {
              <CallParticipantsList onClose={()=>setShowParticipants(false)}/>
         </div>
       </div>
-      <div className='fixed w-full bottom-0 flex items-center justify-center gap-5'>
+      <div className='fixed w-full bottom-0 flex items-center justify-center gap-5 flex-wrap'>
         <CallControls/>
         <DropdownMenu>
           <div className='flex items-center '>
@@ -55,6 +63,7 @@ const MeetingRoom = () => {
             <Users size={20} className='text-white'/>
           </div>
         </button>
+        {!isPersonalRoom && <EndCallButton/>}
       </div>
     </section>
   )
