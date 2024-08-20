@@ -99,12 +99,12 @@ const MeetingTypeList = () => {
                 title='Create Meeting'
                 handleClick={createMeeting}
                 >
-                 <div className="flex flex-col gap 2.5">
+                 <div className="flex flex-col gap-2.5">
                     <label className="text-base text-normal leading-[22px] text-white font-semibold">Add a description</label>
                     <Textarea className="border-none bg-dark-2 focus-visible:ring-0 focus-visible:ring-offset-0"
                     onChange={(e)=>{setValues({...values,description:e.target.value})}}/>
                  </div>
-                 <div className="flex w-full flex-col gap 2.5">
+                 <div className="flex w-full flex-col gap-2.5">
                  <label className="text-base text-normal leading-[22px] text-white font-semibold">Select Date and Time</label>
                  <ReactDatePicker
                  selected={values.dateTime}
@@ -125,7 +125,7 @@ const MeetingTypeList = () => {
                 isOpen={meetingState === 'isSchedulingMeeting'}
                 onClose={() => setMeetingState(undefined)}
                 title='Meeting Created'
-                className="text-center"
+                className="flex flex-col items-center justify-between"
                 handleClick={()=>{
                     navigator.clipboard.writeText(meetingLink)
                     toast({title:'Link Copied'})
