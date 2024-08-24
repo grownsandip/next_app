@@ -1,6 +1,7 @@
 'use client';
 import { DeviceSettings, useCall, VideoPreview } from '@stream-io/video-react-sdk'
 import React, { useEffect, useState } from 'react'
+import { Button } from './ui/button';
 
 const MeetingSetup = ({ setIsSetupComplete }: { setIsSetupComplete: (value: boolean) => void }) => {
     const [isMicCamToggeledOn, setIsMicCamToggledOn] = useState(false)
@@ -32,7 +33,8 @@ const MeetingSetup = ({ setIsSetupComplete }: { setIsSetupComplete: (value: bool
                 </label>
                 <DeviceSettings />
             </div>
-            <button className='rounded-md bg-green-600 px-4 py-2.5' onClick={() => { call.join(); setIsSetupComplete(true) }}>Join Meeting</button>
+            
+            <Button className='rounded-md bg-green-600 px-4 py-2.5' onClick={() => { call.join(); setIsSetupComplete(true) }}>Join Meeting</Button>
         </div>
     )
 }

@@ -6,7 +6,7 @@ import { cn } from "../lib/utils";
 
 import { avatarImages } from "../constants";
 import { useToast } from "../components/ui/use-toast";
-
+import { Button } from './ui/button';
 interface MeetingCardProps {
   title: string;
   date: string;
@@ -60,13 +60,13 @@ const MeetingCard = ({
         </div>
         {!isPreviousMeeting && (
           <div className="flex gap-2">
-            <button onClick={handleClick} className="rounded bg-blue-1 px-6">
+            <Button onClick={handleClick} className="rounded bg-blue-1 px-6">
               {buttonIcon && (
                 <Image src={buttonIcon} alt="feature" width={20} height={20} />
               )}
               &nbsp; {buttonText}
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => {
                 navigator.clipboard.writeText(link);
                 toast({
@@ -82,7 +82,7 @@ const MeetingCard = ({
                 height={20}
               />
               &nbsp; Copy Link
-            </button>
+            </Button>
           </div>
         )}
       </article>

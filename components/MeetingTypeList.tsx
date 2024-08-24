@@ -11,6 +11,7 @@ import { useToast } from "./ui/use-toast"
 import { Textarea } from "./ui/textarea"
 import ReactDatePicker from "react-datepicker"
 import { set } from "react-datepicker/dist/date_utils"
+import { Input } from "./ui/input"
 
 const MeetingTypeList = () => {
     const router = useRouter()
@@ -25,7 +26,7 @@ const MeetingTypeList = () => {
         link: '',
     })
     const [callDetails,setCallDetails]=useState<Call>();
-    const {toast} =useToast()
+    const {toast} =useToast();
     const createMeeting = async () => {
         if (!client || !user) return;
         try {
@@ -125,7 +126,7 @@ const MeetingTypeList = () => {
                 isOpen={meetingState === 'isSchedulingMeeting'}
                 onClose={() => setMeetingState(undefined)}
                 title='Meeting Created'
-                className="flex flex-col items-center justify-between"
+                className="flex flex-col items-center justify-center"
                 handleClick={()=>{
                     navigator.clipboard.writeText(meetingLink)
                     toast({title:'Link Copied'})
@@ -144,6 +145,18 @@ const MeetingTypeList = () => {
                 buttonText='start meeting'
                 handleClick={createMeeting}
             />
+            <MeetingModal
+                isOpen={meetingState === 'isJoiningMeeting'}
+                onClose={() => setMeetingState(undefined)}
+                title='Type the link here'
+                className="text-center"
+                buttonText='Join meeting'
+                handleClick={()=>router.push(values.link)}
+            >
+                <Input placeholder="Meeting Link" className="border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"
+                onChange={(e)=>setValues({...values,link:e.target.value})}
+                />
+            </MeetingModal>
         </section>
     )
 }
